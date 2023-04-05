@@ -1,0 +1,39 @@
+light:
+  - platform: template
+    lights:
+      clock_light:
+        friendly_name: "Clock light"
+        turn_on: []
+        turn_off:
+          service: mqtt.publish
+          data:
+            topic: clock/color
+            payload: "0"
+        set_color: []
+        set_level: []
+automation:
+  - id: "clock_events"
+    alias: clock events
+    description: ""
+    trigger:
+      - platform: state
+        entity_id: light.clock_light
+    condition:
+      - condition: state
+        entity_id: "light.clock_light"
+        state: "on"
+    variables:
+      R: "{{ state_attr('light.clock_light', 'rgb_color')[0] | default('0') }}"
+      G: "{{ state_attr('light.clock_light', 'rgb_color')[1] | default('0') }}"
+      B: "{{ state_attr('light.clock_light', 'rgb_color')[2] | default('255') }}"
+      Br: "{{ state_attr('light.clock_light', 'brightness') or '3' }}"
+      Color: "{{ ((R * Br / 255)|int)*256*256 + ((G * Br / 255)|int)*256 + (B * Br / 255)|int }}"
+    action:
+      - service: mqtt.publish
+        data:
+          topic: clock/color
+          payload: "{{ Color }}"
+      # - service: telegram_bot.send_message
+      #   data:
+      #     title: "clock:"
+      #     message: "{{ state_attr('light.clock_light', 'rgb_color'), Br, Color }}"

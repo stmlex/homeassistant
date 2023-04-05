@@ -1,0 +1,114 @@
+yandex_smart_home:
+  filter:
+    include_entity_globs:
+      - sensor.a4c1381840a0_temperature # livingroom
+      - sensor.a4c138041e22_temperature # bedroom
+      - sensor.a4c138a0dbd3_temperature # childrenroom
+      - sensor.a4c138aed13a_temperature # kitchen
+      - sensor.a4c138b90c73_temperature # balcony
+      - binary_sensor.smartintercom_state # домофон
+      - binary_sensor.0x00158d0002890189_contact
+      - sensor.0x00158d000246651d_action
+      - light.clock_light
+      - light.hallway_light
+      - media_player.televizor_v_gostinoi
+      - sensor.airq_co2
+  color_profile:
+    profile_clock:
+      red: ["255", "0", "0"]
+      green: ["0", "255", "0"]
+      blue: ["0", "0", "255"]
+  entity_config:
+    sensor.airq_co2:
+      name: Качество воздуха
+      room: Гостиная
+      properties:
+        - type: co2_level
+          entity: sensor.airq_co2
+        - type: pm2.5_density
+          entity: sensor.airq_pm2_5
+        - type: pm1_density
+          entity: sensor.airq_pm1_0
+        - type: pm10_density
+          entity: sensor.airq_pm10_0
+        - type: temperature
+          entity: sensor.airq_t
+        - type: humidity
+          entity: sensor.airq_h
+    sensor.a4c1381840a0_temperature:
+      name: Датчик гостиной
+      room: Гостиная
+      properties:
+        - type: temperature
+          entity: sensor.a4c1381840a0_temperature
+        - type: humidity
+          entity: sensor.a4c1381840a0_humidity
+        - type: battery_level
+          entity: sensor.a4c1381840a0_battery
+    sensor.a4c138041e22_temperature:
+      name: Датчик спальни
+      room: Спальня
+      properties:
+        - type: temperature
+          entity: sensor.a4c138041e22_temperature
+        - type: humidity
+          entity: sensor.a4c138041e22_humidity
+        - type: battery_level
+          entity: sensor.a4c138041e22_battery
+    sensor.a4c138a0dbd3_temperature:
+      name: Датчик детской
+      room: Детская
+      properties:
+        - type: temperature
+          entity: sensor.a4c138a0dbd3_temperature
+        - type: humidity
+          entity: sensor.a4c138a0dbd3_humidity
+        - type: battery_level
+          entity: sensor.a4c138a0dbd3_battery
+    sensor.a4c138aed13a_temperature:
+      name: Датчик кухни
+      room: Кухня
+      properties:
+        - type: temperature
+          entity: sensor.a4c138aed13a_temperature
+        - type: humidity
+          entity: sensor.a4c138aed13a_humidity
+        - type: battery_level
+          entity: sensor.a4c138aed13a_battery
+    sensor.a4c138b90c73_temperature:
+      name: Датчик балкона
+      room: Балкон
+      properties:
+        - type: temperature
+          entity: sensor.a4c138b90c73_temperature
+        - type: humidity
+          entity: sensor.a4c138b90c73_humidity
+        - type: battery_level
+          entity: sensor.a4c138b90c73_battery
+    binary_sensor.0x00158d0002890189_contact:
+      name: Датчик входной двери
+      room: Прихожая
+      properties:
+        - type: open
+          entity: binary_sensor.0x00158d0002890189_contact
+        - type: battery_level
+          entity: sensor.0x00158d0002890189_battery
+    sensor.0x00158d000246651d_action:
+      device_class: button
+      name: Кнопка беспроводная
+      room: Спальня
+      properties:
+        # - type: button
+        #   entity: sensor.0x00158d000246651d_action
+        - type: battery_level
+          entity: sensor.0x00158d000246651d_battery
+    light.hallway_light:
+      name: "Люстра"
+      room: "Прихожая"
+    light.clock_light:
+      name: "Часы"
+      room: "Гостиная"
+      color_profile: profile_clock
+    media_player.televizor_v_gostinoi:
+      name: Телевизор
+      room: Гостиная

@@ -1,0 +1,14 @@
+mqtt:
+  sensor:
+    - name: "AirQ_H"
+      state_topic: "air_q_module/H"
+    - name: "AirQ_T"
+      state_topic: "air_q_module/T"
+    - name: "AirQ_CO2"
+      state_topic: "air_q_module/CO2"
+    - name: "AirQ_PM1-0"
+      state_topic: "air_q_module/PM_1_0"
+    - name: "AirQ_PM2-5"
+      state_topic: "air_q_module/PM_2_5"
+    - name: "AirQ_PM10-0"
+      state_topic: "air_q_module/PM_10_0"

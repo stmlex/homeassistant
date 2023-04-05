@@ -1,0 +1,51 @@
+automation:
+  - id: "1668942700295"
+    alias: Plant lamp On
+    description: ""
+    trigger:
+      - platform: time
+        at: "10:00:00"
+    condition: []
+    action:
+      - type: turn_on
+        device_id: 8d4d3e4f426017a9cab14ec582d2ef92
+        entity_id: switch.sonoff_10007d9c30
+        domain: switch
+    mode: single
+  - id: "1668942747874"
+    alias: Plant lamp off
+    description: ""
+    trigger:
+      - platform: time
+        at: "20:00:00"
+    condition: []
+    action:
+      - type: turn_off
+        device_id: 8d4d3e4f426017a9cab14ec582d2ef92
+        entity_id: switch.sonoff_10007d9c30
+        domain: switch
+    mode: single
+  - id: "plant_lamp_send_state"
+    alias: plant lamp send
+    description: ""
+    trigger:
+      - platform: state
+        entity_id: switch.sonoff_10007d9c30
+    condition: []
+    action:
+      - service: telegram_bot.send_message
+        data:
+          title: "фитолампа:"
+          message: "{{ states('switch.sonoff_10007d9c30') }}"
+  - id: "wireless_button"
+    alias: "Button pressed"
+    description: ""
+    trigger:
+      - platform: state
+        entity_id: sensor.0x00158d000246651d_action
+    condition: []
+    action:
+      - service: telegram_bot.send_message
+        data:
+          title: "button action:"
+          message: "{{ states('sensor.0x00158d000246651d_action') }}"
