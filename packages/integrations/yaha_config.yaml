@@ -12,29 +12,38 @@ yandex_smart_home:
       - light.clock_light
       - light.hallway_light
       - media_player.televizor_v_gostinoi
-      - sensor.airq_co2
+      - sensor.mh_z19_co2_value
+      - sensor.mh_z19_co2_value_2
   color_profile:
     profile_clock:
       red: ["255", "0", "0"]
       green: ["0", "255", "0"]
       blue: ["0", "0", "255"]
   entity_config:
-    sensor.airq_co2:
-      name: Качество воздуха
+    sensor.mh_z19_co2_value:
+      name: Качество воздуха спальня
+      room: Спальня
+      properties:
+        - type: co2_level
+          entity: sensor.mh_z19_co2_value
+        - type: pm2.5_density
+          entity: sensor.concentration2_2_5um
+        - type: pm1_density
+          entity: sensor.concentration1_1_0um
+        - type: pm10_density
+          entity: sensor.concentration3_10um
+    sensor.mh_z19_co2_value_2:
+      name: Качество воздуха гостиная
       room: Гостиная
       properties:
         - type: co2_level
-          entity: sensor.airq_co2
+          entity: sensor.mh_z19_co2_value_2
         - type: pm2.5_density
-          entity: sensor.airq_pm2_5
+          entity: sensor.concentration2_2_5um_2
         - type: pm1_density
-          entity: sensor.airq_pm1_0
+          entity: sensor.concentration1_1_0um_2
         - type: pm10_density
-          entity: sensor.airq_pm10_0
-        - type: temperature
-          entity: sensor.airq_t
-        - type: humidity
-          entity: sensor.airq_h
+          entity: sensor.concentration3_10um_2
     sensor.a4c1381840a0_temperature:
       name: Датчик гостиной
       room: Гостиная
