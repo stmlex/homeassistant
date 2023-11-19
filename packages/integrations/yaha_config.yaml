@@ -14,12 +14,23 @@ yandex_smart_home:
       - media_player.televizor_v_gostinoi
       - sensor.mh_z19_co2_value
       - sensor.mh_z19_co2_value_2
+      - humidifier.uvlazhnitel
+      - humidifier.uvlazhnitel_2
   color_profile:
     profile_clock:
       red: ["255", "0", "0"]
       green: ["0", "255", "0"]
       blue: ["0", "0", "255"]
   entity_config:
+    humidifier.uvlazhnitel:
+      name: Увлажнитель
+      room: Гостиная
+      properties:
+        - type: water_level
+          entity: sensor.uvlazhnitel_water_level
+    humidifier.uvlazhnitel_2:
+      name: Увлажнитель
+      room: Спальня
     sensor.mh_z19_co2_value:
       name: Качество воздуха спальня
       room: Спальня
