@@ -16,6 +16,7 @@ yandex_smart_home:
       - sensor.mh_z19_co2_value_2
       - humidifier.uvlazhnitel
       - humidifier.uvlazhnitel_2
+      - light.neopixel_light
   color_profile:
     profile_clock:
       red: ["255", "0", "0"]
@@ -129,6 +130,9 @@ yandex_smart_home:
       name: "Часы"
       room: "Гостиная"
       color_profile: profile_clock
+    light.neopixel_light:
+      name: "Ночник"
+      room: "Гостиная"
     media_player.televizor_v_gostinoi:
       name: Телевизор
       room: Гостиная
