@@ -16,6 +16,7 @@ yandex_smart_home:
       - sensor.mh_z19_co2_value_2
       - humidifier.uvlazhnitel
       - humidifier.uvlazhnitel_2
+      - humidifier.smartmi_evaporative_humidifier
       - light.neopixel_light
   color_profile:
     profile_clock:
@@ -31,7 +32,13 @@ yandex_smart_home:
           entity: sensor.uvlazhnitel_water_level
     humidifier.uvlazhnitel_2:
       name: Увлажнитель
+      room: Детская
+    humidifier.smartmi_evaporative_humidifier:
+      name: Увлажнитель
       room: Спальня
+      properties:
+        - type: water_level
+          entity: sensor.smartmi_evaporative_humidifier_water_level
     sensor.mh_z19_co2_value:
       name: Качество воздуха спальня
       room: Спальня
