@@ -18,12 +18,16 @@ yandex_smart_home:
       - humidifier.uvlazhnitel_2
       - humidifier.smartmi_evaporative_humidifier
       - light.neopixel_light
+      - switch.elka_on_off
   color_profile:
     profile_clock:
       red: ["255", "0", "0"]
       green: ["0", "255", "0"]
       blue: ["0", "0", "255"]
   entity_config:
+    switch.elka_on_off:
+      name: Елочка
+      room: Гостиная
     humidifier.uvlazhnitel:
       name: Увлажнитель
       room: Гостиная
