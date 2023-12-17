@@ -18,16 +18,36 @@ yandex_smart_home:
       - humidifier.uvlazhnitel_2
       - humidifier.smartmi_evaporative_humidifier
       - light.neopixel_light
-      - switch.elka_on_off
+      - button.garland_power
+      - button.garland_power_2
   color_profile:
     profile_clock:
       red: ["255", "0", "0"]
       green: ["0", "255", "0"]
       blue: ["0", "0", "255"]
   entity_config:
-    switch.elka_on_off:
+    button.garland_power:
       name: Елочка
       room: Гостиная
+      custom_toggles:
+        backlight:
+          turn_on:
+            service: button.press
+            entity_id: button.garland_effect
+          turn_off:
+            service: button.press
+            entity_id: button.garland_effect
+    button.garland_power_2:
+      name: Гирлянда
+      room: Спальня
+      custom_toggles:
+        backlight:
+          turn_on:
+            service: button.press
+            entity_id: button.garland_effect_2
+          turn_off:
+            service: button.press
+            entity_id: button.garland_effect_2
     humidifier.uvlazhnitel:
       name: Увлажнитель
       room: Гостиная
