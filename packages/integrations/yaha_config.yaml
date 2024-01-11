@@ -14,6 +14,7 @@ yandex_smart_home:
       - media_player.televizor_v_gostinoi
       - sensor.mh_z19_co2_value
       - sensor.mh_z19_co2_value_2
+      - sensor.co2
       - humidifier.uvlazhnitel
       - humidifier.uvlazhnitel_2
       - humidifier.smartmi_evaporative_humidifier
@@ -88,6 +89,20 @@ yandex_smart_home:
           entity: sensor.concentration1_1_0um_2
         - type: pm10_density
           entity: sensor.concentration3_10um_2
+    sensor.co2:
+      name: Качество воздуха детская
+      room: Детская
+      properties:
+        - type: co2_level
+          entity: sensor.co2
+        - type: pm2.5_density
+          entity: sensor.pm1006k_2_5um_m3
+        - type: pm1_density
+          entity: sensor.pm1006k_1_0um_m3
+        - type: pm10_density
+          entity: sensor.pm1006k_10_0um_m3
+        - type: humidity
+          entity: sensor.humidity
     sensor.a4c1381840a0_temperature:
       name: Датчик гостиной
       room: Гостиная
