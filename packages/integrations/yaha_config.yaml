@@ -178,10 +178,10 @@ yandex_smart_home:
       room: "Гостиная"
       color_profile: profile_clock
     light.neopixel_light:
-      name: "Ночник"
+      name: "Лампа"
       room: "Гостиная"
     light.neopixel_light_2:
-      name: "Ночник"
+      name: "Лампа"
       room: "Спальня"
     media_player.televizor_v_gostinoi:
       name: Телевизор
