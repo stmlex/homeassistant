@@ -20,6 +20,7 @@ yandex_smart_home:
       - humidifier.smartmi_evaporative_humidifier
       - light.neopixel_light
       - light.neopixel_light_2
+      - light.neopixel_light_3
       - button.garland_power
       - button.garland_power_2
   color_profile:
@@ -183,6 +184,9 @@ yandex_smart_home:
     light.neopixel_light_2:
       name: "Лампа"
       room: "Спальня"
+    light.neopixel_light_3:
+      name: "Лампа"
+      room: "Детская"
     media_player.televizor_v_gostinoi:
       name: Телевизор
       room: Гостиная
