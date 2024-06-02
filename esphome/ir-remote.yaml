@@ -1,8 +1,8 @@
 esphome:
-  name: rgb_lamp
+  name: ir_remote
 
 esp8266:
-  board: d1_mini_pro
+  board: esp_wroom_02
 
 # Enable logging
 logger:
@@ -15,69 +15,94 @@ ota:
   password: ""
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+  ssid: ALEX_NET
+  password: ac0250687
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "esphomeAP"
+    ssid: "IR-Remote Fallback Hotspot"
     password: "1234567890"
 
 light:
-  - platform: neopixelbus
-    type: GRB
-    variant: WS2812
-    pin: GPIO2
-    num_leds: 300
-    name: "NeoPixel Light"
-    effects:
-      - addressable_rainbow:
-          name: Rainbow Effect With Custom Values
-          speed: 30
-          width: 300
-      - addressable_color_wipe:
-          name: Color Wipe Effect With Custom Values
-          colors:
-            - red: 10%
-              green: 10%
-              blue: 100%
-              num_leds: 1
-            - red: 0%
-              green: 0%
-              blue: 0%
-              num_leds: 1
-          add_led_interval: 100ms
-          reverse: False
-      - random:
-          name: "My Fast Random Effect"
-          transition_length: 4s
-          update_interval: 5s
-      - strobe:
-          name: Strobe Effect With Custom Values
-          colors:
-            - state: True
-              brightness: 100%
-              red: 100%
-              green: 90%
-              blue: 0%
-              duration: 500ms
-            - state: False
-              duration: 250ms
-            - state: True
-              brightness: 100%
-              red: 0%
-              green: 100%
-              blue: 0%
-              duration: 500ms
-      - addressable_scan:
-          name: Scan Effect With Custom Values
-          move_interval: 60ms
-      - addressable_fireworks:
-          name: Fireworks Effect With Custom Values
-          update_interval: 32ms
-          spark_probability: 10%
-          use_random_color: false
-          fade_out_rate: 120
+  - platform: status_led
+    name: "status led state"
+    pin: GPIO4
+
+remote_receiver:
+  pin:
+    number: GPIO5
+    inverted: true
+    mode:
+      input: true
+      pullup: true
+  dump: raw
+  # dump: all
+
+remote_transmitter:
+  pin: GPIO14
+  carrier_duty_percent: 50%
+
+# Buttons
+button:
+  - platform: template
+    name: "Garland_power"
+    id: Garland_power
+
+    # Optional variables:
+    icon: "mdi:power"
+    on_press:
+      - remote_transmitter.transmit_raw:
+          code: [9557, -4555, 588, -552, 613, -608, 559, -581, 584, -612, 562, -578, 589, -594, 598, -555, 588, -609, 565, -1687, 590, -1664, 616, -1689, 593, -1690, 587, -556, 614, -1693, 585, -1669, 638, -1667, 587, -1668, 612, -1669, 611, -583, 614, -555, 587, -581, 588, -581, 585, -582, 588, -582, 589, -580, 592, -577, 587, -1695, 590, -1691, 561, -1720, 592, -1693, 585, -1669, 638, -1670, 588]
+          carrier_frequency: 38kHz
+          # repeat:
+          #   times: 5
+          #   wait_time: 16ms
+  - platform: template
+    name: "Air_on"
+    id: Air_on
+
+    # Optional variables:
+    icon: "mdi:power"
+    on_press:
+      - remote_transmitter.transmit_raw:
+          code: [9033, -4531, 601, -1661, 599, -1664, 599, -510, 629, -548, 596, -547, 596, -521, 630, -523, 629, -1672, 599, -502, 629, -1634, 630, -1668, 600, -512, 628, -518, 630, -532, 615, -526, 630, -542, 600, -1628, 631, -506, 628, -1638, 628, -515, 628, -517, 631, -519, 627, -556, 600, -541, 598, -503, 629, -1633, 632, -539, 599, -543, 596, -519, 630, -524, 624, -1651, 630, -513, 628, -535, 597, -506, 628, -511, 630, -512, 629, -548, 599, -550, 596, -556, 597, -514, 630, -501, 628, -507, 627, -542, 598, -512, 630, -516, 630, -519, 629, -555, 597, -496, 625, -7963, 630, -504, 630, -504, 629, -542, 596, -546, 596, -518, 627, -553, 599, -553, 599, -1640, 629, -502, 627, -1635, 629, -1637, 628, -1641, 631, -515, 630, -1646, 630, -523, 627, -515, 628, -534, 596, -508, 629, -510, 630, -512, 630, -516, 629, -553, 596, -554, 598, -512, 628, -504, 627, -507, 627, -543, 598, -543, 599, -516, 630, -550, 600, -551, 599, -514, 629, -534, 598, -537, 598, -509, 629, -544, 600, -546, 597, -521, 628, -556, 598, -544, 597, -502, 629, -506, 629, -510, 626, -516, 629, -517, 631, -519, 627, -526, 628, -546, 598, -503, 628, -507, 631, -538, 598, -546, 597, -520, 628, -540, 608, -523, 629, -514, 629, -1660, 599, -505, 628, -542, 597, -1640, 630, -548, 598, -1647, 630, -1650, 629, -1623, 626, -7963, 633, -501, 628, -539, 597, -542, 597, -545, 598, -516, 630, -519, 628, -525, 631, -512, 628, -1630, 631, -505, 626, -543, 598, -530, 610, -550, 599, -519, 628, -524, 628, -514, 631, -501, 627, -508, 628, -542, 598, -514, 627, -518, 627, -522, 630, -555, 599, -512, 629, -502, 628, -507, 630, -509, 630, -541, 598, -550, 599, -550, 596, -525, 628, -513, 627, -506, 628, -506, 628, -511, 627, -524, 619, -517, 629, -551, 596, -557, 599, -543, 596, -504, 629, -506, 629, -510, 629, -544, 596, -519, 630, -550, 597, -556, 598, -512, 629, -1629, 630, -516, 619, -508, 629, -544, 594, -520, 630, -550, 597, -556, 599, -494, 623]
+          carrier_frequency: 38kHz
+          # repeat:
+          #   times: 5
+          #   wait_time: 16ms
+  - platform: template
+    name: "Garland_effect"
+    id: Garland_effect
+
+    # Optional variables:
+    icon: "mdi:autorenew"
+    on_press:
+      - remote_transmitter.transmit_raw:
+          code: [9149, -4514, 556, -557, 579, -560, 577, -560, 583, -582, 576, -535, 578, -563, 578, -559, 578, -585, 558, -1683, 578, -1710, 552, -1688, 575, -1693, 577, -585, 577, -1663, 578, -1714, 551, -1689, 590, -1675, 580, -1688, 579, -558, 578, -1713, 551, -588, 553, -584, 551, -563, 576, -562, 576, -588, 573, -538, 579, -1686, 579, -563, 574, -1688, 578, -1686, 578, -1688, 579, -1685, 579]
+          carrier_frequency: 38kHz
+          # repeat:
+          #   times: 5
+          #   wait_time: 16ms
+
+# Individual switches
+switch:
+  - platform: template
+    name: "Garland_On_Off"
+    restore_mode: DISABLED
+    turn_on_action:
+      - remote_transmitter.transmit_raw:
+          code: [9557, -4555, 588, -552, 613, -608, 559, -581, 584, -612, 562, -578, 589, -594, 598, -555, 588, -609, 565, -1687, 590, -1664, 616, -1689, 593, -1690, 587, -556, 614, -1693, 585, -1669, 638, -1667, 587, -1668, 612, -1669, 611, -583, 614, -555, 587, -581, 588, -581, 585, -582, 588, -582, 589, -580, 592, -577, 587, -1695, 590, -1691, 561, -1720, 592, -1693, 585, -1669, 638, -1670, 588]
+          carrier_frequency: 38kHz
+          # repeat:
+          #   times: 5
+          #   wait_time: 16ms
+    turn_off_action:
+      - remote_transmitter.transmit_raw:
+          code: [9557, -4555, 588, -552, 613, -608, 559, -581, 584, -612, 562, -578, 589, -594, 598, -555, 588, -609, 565, -1687, 590, -1664, 616, -1689, 593, -1690, 587, -556, 614, -1693, 585, -1669, 638, -1667, 587, -1668, 612, -1669, 611, -583, 614, -555, 587, -581, 588, -581, 585, -582, 588, -582, 589, -580, 592, -577, 587, -1695, 590, -1691, 561, -1720, 592, -1693, 585, -1669, 638, -1670, 588]
+          carrier_frequency: 38kHz
+          # repeat:
+          #   times: 5
+          #   wait_time: 16ms
 
 captive_portal:
 
