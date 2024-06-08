@@ -9,7 +9,7 @@ yandex_smart_home:
       - binary_sensor.smartintercom_state # домофон
       - binary_sensor.0x00158d0002890189_contact
       - sensor.0x00158d000246651d_action
-      - light.clock_light
+      - light.rgb_clock
       - light.hallway_light
       - media_player.televizor_v_gostinoi
       - sensor.mh_z19_co2_value
@@ -182,10 +182,9 @@ yandex_smart_home:
     light.hallway_light:
       name: "Люстра"
       room: "Прихожая"
-    light.clock_light:
+    light.rgb_clock:
       name: "Часы"
       room: "Гостиная"
-      color_profile: profile_clock
     light.neopixel_light:
       name: "Лампа"
       room: "Гостиная"
