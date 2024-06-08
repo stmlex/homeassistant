@@ -25,7 +25,7 @@ automation:
     action:
       - service: notify.telegram_main
         data:
-          message: "Дверь открыта"
+          message: "Дверь🚪"
   #- id: "Door_to_closed"
   #  alias: "Door is closed"
   #  description: ""

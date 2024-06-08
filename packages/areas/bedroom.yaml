@@ -37,15 +37,15 @@ automation:
         data:
           title: "фитолампа:"
           message: "{{ states('switch.sonoff_10007d9c30') }}"
-  - id: "wireless_button"
-    alias: "Button pressed"
-    description: ""
-    trigger:
-      - platform: state
-        entity_id: sensor.0x00158d000246651d_action
-    condition: []
-    action:
-      - service: telegram_bot.send_message
-        data:
-          title: "button action:"
-          message: "{{ states('sensor.0x00158d000246651d_action') }}"
+  # - id: "wireless_button"
+  #   alias: "Button pressed"
+  #   description: ""
+  #   trigger:
+  #     - platform: state
+  #       entity_id: sensor.0x00158d000246651d_action
+  #   condition: []
+  #   action:
+  #     - service: telegram_bot.send_message
+  #       data:
+  #         title: "button action:"
+  #         message: "{{ states('sensor.0x00158d000246651d_action') }}"
