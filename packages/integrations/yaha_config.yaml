@@ -22,9 +22,9 @@ yandex_smart_home:
       - light.neopixel_light_2
       - light.neopixel_light_3
       - button.garland_power
-      - button.air_on
+      - climate.air_cooler
       - button.garland_power_2
-      - button.air_on_2
+      - climate.air_cooler_2
   color_profile:
     profile_clock:
       red: ["255", "0", "0"]
@@ -42,10 +42,10 @@ yandex_smart_home:
     #       turn_off:
     #         service: button.press
     #         entity_id: button.garland_effect
-    button.air_on:
+    climate.air_cooler:
       name: Кондиционер
       room: Детская
-    button.air_on_2:
+    climate.air_cooler_2:
       name: Кондиционер
       room: Спальня
     button.garland_power_2:
